@@ -1,0 +1,3 @@
+  818  mvn package
+  819  java -cp target/deeplearning4j-python-executable-1.0.0-beta4-bin.jar org.deeplearning4j.withdatapipeline.ChurnExample
+  820  java -cp target/deeplearning4j-python-executable-1.0.0-beta4-bin.jar org.deeplearning4j.withdatapipeline.ChurnExample --newDataPath ~/SKYMIND/dl4j-python-examples/src/main/resources/datapipeline/churn/train/Churn_Modelling_01.csv --newDataFeaturizedPath ~/SKYMIND/dl4j-python-examples/src/main/resources/datapipeline/churn/train/Churn_Modelling_01_processed.csv --pathToSaveModel ~/trained_exported_dl4j_model.zip 
