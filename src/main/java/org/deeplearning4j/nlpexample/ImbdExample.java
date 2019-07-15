@@ -19,7 +19,7 @@ public class ImbdExample {
     public static void main(String args[]) throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
         String modelPath = new ClassPathResource("nlpexample/fasttext/saved_model_bigram.h5").getFile().getPath();
         MultiLayerNetwork model = KerasModelImport.importKerasSequentialModelAndWeights(modelPath, true);
-        model.setListeners(new ScoreIterationListener(1000));
+        model.setListeners(new ScoreIterationListener(100));
         System.out.println(model.summary());
         System.out.println(model.conf().toJson());
 
@@ -37,7 +37,7 @@ public class ImbdExample {
         Evaluation eval;
         int nContinueEpochs = 5;
         while (nContinueEpochs > 0) {
-            if (nContinueEpochs == 0) {
+            if (nContinueEpochs == 5) {
                 eval = model.evaluate(testIter);
                 testIter.reset();
                 eval.reset();
