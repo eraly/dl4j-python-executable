@@ -23,21 +23,13 @@ public class ImbdExample {
         System.out.println(model.summary());
         System.out.println(model.conf().toJson());
 
-        /*
-        INDArray input = Nd4j.readNumpy(new ClassPathResource("nlpexample/fasttext/input_bigram.csv").getFile().getPath(),",");
-        System.out.println(input);
-        INDArray output = model.output(input);
-        System.out.println(output );
-        INDArray saveOutput = Nd4j.readNumpy(new ClassPathResource("nlpexample/fasttext/output_bigram.csv").getFile().getPath(),",");
-        System.out.println(saveOutput);
-        */
-
         DataSetIterator trainIter = new CustomDataSetIterator(true);
         DataSetIterator testIter = new CustomDataSetIterator(false);
         EvaluationBinary eval = new EvaluationBinary();
         int nContinueEpochs = 5;
-        while (nContinueEpochs > 0) {
-            if (nContinueEpochs == 5) {
+        int epoch = 0;
+        while (epoch < nContinueEpochs) {
+            if (epoch == 0) {
                 model.doEvaluation(testIter,eval);
                 testIter.reset();
                 System.out.println("Evaluation before any training " + nContinueEpochs + ":\n" + eval.stats());
@@ -47,9 +39,9 @@ public class ImbdExample {
             trainIter.reset();
             model.doEvaluation(testIter,eval);
             testIter.reset();
-            System.out.println("Evaluation at epoch " + nContinueEpochs + ":\n" + eval.stats());
+            System.out.println("Evaluation at epoch " + epoch + ":\n" + eval.stats());
             eval.reset();
-            nContinueEpochs--;
+            epoch--;
         }
     }
 }
