@@ -5,7 +5,7 @@ import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurat
 import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
-import org.nd4j.evaluation.classification.Evaluation;
+import org.nd4j.evaluation.classification.EvaluationBinary;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.io.ClassPathResource;
 
@@ -34,22 +34,22 @@ public class ImbdExample {
 
         DataSetIterator trainIter = new CustomDataSetIterator(true);
         DataSetIterator testIter = new CustomDataSetIterator(false);
-        Evaluation eval;
+        EvaluationBinary eval = new EvaluationBinary();
         int nContinueEpochs = 5;
         while (nContinueEpochs > 0) {
             if (nContinueEpochs == 5) {
-                eval = model.evaluate(testIter);
+                model.doEvaluation(testIter,eval);
                 testIter.reset();
                 eval.reset();
                 System.out.println("Evaluation before any training " + nContinueEpochs + ":\n" + eval.stats());
             }
             model.fit(trainIter);
             trainIter.reset();
-            eval = model.evaluate(testIter);
+            model.doEvaluation(testIter,eval);
             testIter.reset();
             eval.reset();
             System.out.println("Evaluation at epoch " + nContinueEpochs + ":\n" + eval.stats());
-
+            nContinueEpochs--;
         }
     }
 }
