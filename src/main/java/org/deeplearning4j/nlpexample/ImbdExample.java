@@ -41,7 +41,7 @@ public class ImbdExample {
             testIter.reset();
             System.out.println("Evaluation at epoch " + epoch + ":\n" + eval.stats());
             eval.reset();
-            epoch--;
+            epoch++;
         }
     }
 }
