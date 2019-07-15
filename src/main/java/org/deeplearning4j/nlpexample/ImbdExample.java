@@ -40,15 +40,15 @@ public class ImbdExample {
             if (nContinueEpochs == 5) {
                 model.doEvaluation(testIter,eval);
                 testIter.reset();
-                eval.reset();
                 System.out.println("Evaluation before any training " + nContinueEpochs + ":\n" + eval.stats());
+                eval.reset();
             }
             model.fit(trainIter);
             trainIter.reset();
             model.doEvaluation(testIter,eval);
             testIter.reset();
-            eval.reset();
             System.out.println("Evaluation at epoch " + nContinueEpochs + ":\n" + eval.stats());
+            eval.reset();
             nContinueEpochs--;
         }
     }
