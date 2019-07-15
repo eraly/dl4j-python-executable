@@ -26,7 +26,7 @@ public class ImbdExample {
         DataSetIterator trainIter = new CustomDataSetIterator(true);
         DataSetIterator testIter = new CustomDataSetIterator(false);
         EvaluationBinary eval = new EvaluationBinary();
-        int nContinueEpochs = 5;
+        int nContinueEpochs = 15;
         int epoch = 0;
         while (epoch < nContinueEpochs) {
             if (epoch == 0) {
