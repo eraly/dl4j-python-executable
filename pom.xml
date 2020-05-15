@@ -16,7 +16,7 @@
         <datavec.version>1.0.0-beta4</datavec.version>
         <scala.binary.version>2.11</scala.binary.version>
         <datavec.spark.version>1.0.0-beta4_spark_2</datavec.spark.version>
-        <jackson.version>2.5.1</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <logback.version>1.2.3</logback.version>
         <java.version>1.8</java.version>
         <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
